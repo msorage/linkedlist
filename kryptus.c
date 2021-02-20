@@ -1,5 +1,7 @@
 //OBS: Só foi me dado 1h para fazer esse programa, enquanto que no enunciado constava que haveria 1h30
-//faltando: remove, get, clear
+//OBS2: Todas as contagens da lista começam em 0
+
+//faltando: clear
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -72,14 +74,27 @@ int get(node * head, int position){
 
 }
 
-//void remove(node * head, int position){
-//	int count = 0;
-//  node * tmp = head;
-//  
-//  while(tmp->next != NULL && count != position){
-//  	count++;
-//  }  
-//}
+void delete(node ** head, int position){
+  int count = 0;
+  node * tmp = *head;
+  node * tmp_ant;
+
+  //tratativa para lista vazia e lista com um elemento a serem implementadas
+  if(tmp == NULL){
+    printf("Empty List");
+    return;
+  }
+
+  while(tmp->next != NULL && count != position){
+    tmp_ant = tmp;
+    tmp = tmp->next;
+  	count++;
+  }
+
+tmp_ant->next = tmp->next;
+free(tmp);
+
+}
 
 int main(int argc, char *argv[]) {
   char input[201];
@@ -128,6 +143,17 @@ int main(int argc, char *argv[]) {
       position = atoi(token);
       
       printf("%d\n", get(head,position));
+    }
+
+    if (strncmp(input, "delete", 6) == 0){
+      const char* delim = " ";
+      char* token = strtok(input,delim);
+      token = strtok(NULL, delim);
+      int position; 
+      position = atoi(token);
+      
+      delete(&head,position);
+      list(head);
     }
     
     if (strncmp(input, "last\n", 5) == 0) {
