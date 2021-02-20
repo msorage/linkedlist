@@ -1,4 +1,5 @@
 //OBS: Só foi me dado 1h para fazer esse programa, enquanto que no enunciado constava que haveria 1h30
+//faltando: put, remove, get, clear
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -35,6 +36,7 @@ void list(node * head){
     printf("%d ", tmp->data);
     tmp = tmp->next;
   }
+  printf("\n");
 }
 
 void clear(node* head) {
@@ -43,17 +45,17 @@ void clear(node* head) {
 }
 
 void put(node* head, int data) {
-  node new_node;
-  new_node.data = data;
-  new_node.next = NULL;
-
+  node* new_node = (node*) malloc(sizeof(node));
+  new_node->data = data;
+  new_node->next = NULL;
+  
   node* l = last(head);
   
   if(l == NULL) {
-    head = &new_node;
+    head = new_node;
   }
   
-  l->next = &new_node;
+  l->next = new_node;
 }
 
 //void remove(node * head, int position){
@@ -101,7 +103,14 @@ int main(int argc, char *argv[]) {
     }
 
     if (strncmp(input, "put", 3) == 0){
-      printf("é isso\n");
+      const char* delim = " ";
+      char* token = strtok(input,delim);
+      token = strtok(NULL, delim);
+      int data; 
+      data = atoi(token);
+      put(head,data);
+      list(head);
+      
     }
     
     if (strncmp(input, "last\n", 5) == 0) {
