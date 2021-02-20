@@ -58,6 +58,20 @@ void put(node** head, int data) {
   l->next = new_node;
 }
 
+int get(node * head, int position){
+  int count = 0;
+  node * tmp = head;
+  // tratativas de tamanho da fila e posição além do limite dela poderiam ser feitas
+  
+  while(tmp != NULL && count != position){
+    tmp = tmp->next;
+    count++;
+  }    
+  return tmp->data;
+  
+
+}
+
 //void remove(node * head, int position){
 //	int count = 0;
 //  node * tmp = head;
@@ -69,18 +83,6 @@ void put(node** head, int data) {
 
 int main(int argc, char *argv[]) {
   char input[201];
-  
-  node n1;
-  n1.data = 5;
-  n1.next = NULL;
-  
-  node n2;
-  n2.data = 8;
-  n2.next = &n1;
-  
-  node n3;
-  n3.data = 10;
-  n3.next = &n2;
   
   node* head = NULL;
   
@@ -117,6 +119,16 @@ int main(int argc, char *argv[]) {
       list(head);
       
     }
+
+    if (strncmp(input, "get", 3) == 0){
+      const char* delim = " ";
+      char* token = strtok(input,delim);
+      token = strtok(NULL, delim);
+      int position; 
+      position = atoi(token);
+      
+      printf("%d\n", get(head,position));
+    }
     
     if (strncmp(input, "last\n", 5) == 0) {
       node* l = last(head);
@@ -125,14 +137,6 @@ int main(int argc, char *argv[]) {
       } 
       printf("\n");
     }
-    
-//    if(starts_with(input, "put")) {
-//      	char* data_str = input.split(" ")[1];
-//      	int data = parse_int(data_str);
-      
-//      	put(head, data);
-//      	list(head);
-//    }
     
      if (strncmp(input, "exit\n", 5) == 0) {
        printf("Leaving. Good bye.\n");
