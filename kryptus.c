@@ -1,5 +1,5 @@
 //OBS: Só foi me dado 1h para fazer esse programa, enquanto que no enunciado constava que haveria 1h30
-//faltando: put, remove, get, clear
+//faltando: remove, get, clear
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -44,17 +44,17 @@ void clear(node* head) {
   head = NULL; 
 }
 
-void put(node* head, int data) {
+void put(node** head, int data) {
   node* new_node = (node*) malloc(sizeof(node));
   new_node->data = data;
   new_node->next = NULL;
   
-  node* l = last(head);
+  node* l = last(*head);
   
   if(l == NULL) {
-    head = new_node;
+    *head = new_node;
+    return;
   }
-  
   l->next = new_node;
 }
 
@@ -62,7 +62,7 @@ void put(node* head, int data) {
 //	int count = 0;
 //  node * tmp = head;
 //  
-//  while(count != position){
+//  while(tmp->next != NULL && count != position){
 //  	count++;
 //  }  
 //}
@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
   n3.data = 10;
   n3.next = &n2;
   
-  node* head = &n3;
+  node* head = NULL;
   
 
   while(1) {
@@ -99,7 +99,12 @@ int main(int argc, char *argv[]) {
     
     if (strncmp(input, "first\n", 6) == 0) {
       node* f = first(head);
-      printf("%d\n", f->data);
+
+      if(f != NULL){
+        printf("%d", f->data);
+      } 
+      printf("\n");
+      
     }
 
     if (strncmp(input, "put", 3) == 0){
@@ -108,14 +113,17 @@ int main(int argc, char *argv[]) {
       token = strtok(NULL, delim);
       int data; 
       data = atoi(token);
-      put(head,data);
+      put(&head,data);
       list(head);
       
     }
     
     if (strncmp(input, "last\n", 5) == 0) {
       node* l = last(head);
-      printf("%d\n", l->data);
+      if(l != NULL){
+        printf("%d", l->data);
+      } 
+      printf("\n");
     }
     
 //    if(starts_with(input, "put")) {
