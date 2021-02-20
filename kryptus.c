@@ -11,12 +11,12 @@ typedef struct t_node {
 } node;
 
 node * first(node * head){
-	return head;
+  return head;
 
 }
 
 node * last(node * head){
-	node * tmp = head;
+  node * tmp = head;
   
   if(tmp == NULL) {
     return NULL;
@@ -30,16 +30,16 @@ node * last(node * head){
 }
 
 void list(node * head){
-	node * tmp = head;
+  node * tmp = head;
   while(tmp != NULL){
-  	printf("%d ", tmp->data);
+    printf("%d ", tmp->data);
     tmp = tmp->next;
   }
 }
 
 void clear(node* head) {
   // Tem memory leak, falta desalocar memória. Talvez usando recursão?
-	head = NULL; 
+  head = NULL; 
 }
 
 void put(node* head, int data) {
@@ -62,14 +62,8 @@ void put(node* head, int data) {
 //  
 //  while(count != position){
 //  	count++;
-//  }
-  
-  
+//  }  
 //}
-
-void print_entry(char *entry) {
-	printf("You entered: %s\n", entry);
-}
 
 int main(int argc, char *argv[]) {
   char input[201];
@@ -108,12 +102,12 @@ int main(int argc, char *argv[]) {
 
     if (strncmp(input, "put", 3) == 0){
       printf("é isso\n");
-      }
+    }
     
     if (strncmp(input, "last\n", 5) == 0) {
       node* l = last(head);
       printf("%d\n", l->data);
-		}
+    }
     
 //    if(starts_with(input, "put")) {
 //      	char* data_str = input.split(" ")[1];
