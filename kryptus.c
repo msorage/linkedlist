@@ -3,18 +3,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <string.h>
+
 
 typedef struct t_node {
-	struct t_node* next;
+  struct t_node* next;
   int data;
 } node;
-
-// bool starts_with(const char *pre, const char *str) {
-//     size_t lenpre = strlen(pre),
-//            lenstr = strlen(str);
-//     return lenstr < lenpre ? false : memcmp(pre, str, lenpre) == 0;
-// }
 
 node * first(node * head){
 	return head;
@@ -111,6 +105,10 @@ int main(int argc, char *argv[]) {
       node* f = first(head);
       printf("%d\n", f->data);
     }
+
+    if (strncmp(input, "put", 3) == 0){
+      printf("é isso\n");
+      }
     
     if (strncmp(input, "last\n", 5) == 0) {
       node* l = last(head);
