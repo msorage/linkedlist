@@ -1,5 +1,7 @@
 //OBS: Só foi me dado 1h para fazer esse programa, enquanto que no enunciado constava que haveria 1h30
 //OBS2: Todas as contagens da lista começam em 0
+//OBS3: o nome da função remove foi alterado para delete, uma vez que estava dando conflito com uma função da stdlib;
+
 
 //faltando: clear
 
@@ -57,9 +59,20 @@ void list(node * head){
   printf("\n");
 }
 
-void clear(node* head) {
+void clear(node ** head) {
   // Tem memory leak, falta desalocar memória. Talvez usando recursão?
-  head = NULL; 
+  node * tmp = *head;
+  node * next;
+
+  //percorrer a lista apagando os elementos
+  while(tmp != NULL){
+    next = tmp->next;
+    free(tmp);
+    tmp = next;
+  } 
+
+  //apontar head para null
+  *head = NULL;
 }
 
 void put(node** head, int data) {
@@ -126,6 +139,11 @@ int main(int argc, char *argv[]) {
     }
     
     if (strncmp(input, "list\n", 5) == 0) {
+      list(head);
+    }
+
+    if (strncmp(input, "clear\n", 6) == 0) {
+      clear(&head);
       list(head);
     }
     
