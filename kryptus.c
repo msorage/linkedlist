@@ -1,6 +1,6 @@
 //OBS: Só foi me dado 1h para fazer esse programa, enquanto que no enunciado constava que haveria 1h30
 //OBS2: Todas as contagens da lista começam em 0
-//OBS3: o nome da função remove foi alterado para delete, uma vez que estava dando conflito com uma função da stdlib;
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -57,7 +57,7 @@ void list(node * head){
 }
 
 void clear(node ** head) {
-  // Tem memory leak, falta desalocar memória. Talvez usando recursão?
+  
   node * tmp = *head;
   node * next;
 
@@ -188,7 +188,7 @@ int main(int argc, char *argv[]) {
       
     }
 
-    if (strncmp(input, "delete", 6) == 0){
+    if (strncmp(input, "remove", 6) == 0){
       const char* delim = " ";
       char* token = strtok(input,delim);
       token = strtok(NULL, delim);
