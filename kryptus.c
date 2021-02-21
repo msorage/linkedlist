@@ -104,25 +104,27 @@ void delete(node ** head, int position){
   node * tmp = *head;
   node * tmp_ant;
 
-  //tratativa para lista com um elemento a ser implementada
-  if(size(*head) == 1){
-    free(tmp);
-    *head = NULL;
-    return;
-  }
-  
   //tratativa lista vazia
   if(tmp == NULL){
     printf("Empty List");
     return;
   }
 
+  //primeiro elemento a ser removido
+  if(position == 0){
+    *head = tmp->next;
+    free(tmp);
+    return;
+  }
+
+  //encontrar elemento a ser removido
   while(tmp->next != NULL && count != position){
     tmp_ant = tmp;
     tmp = tmp->next;
   	count++;
   }
 
+//remover elemento 
 tmp_ant->next = tmp->next;
 free(tmp);
 
@@ -169,7 +171,7 @@ int main(int argc, char *argv[]) {
       data = atoi(token);
       put(&head,data);
       list(head);
-      
+
     }
 
     if (strncmp(input, "get", 3) == 0){
