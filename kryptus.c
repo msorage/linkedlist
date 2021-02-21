@@ -32,6 +32,22 @@ node * last(node * head){
   return tmp;
 }
 
+int size(node * head){
+  int count = 0;
+  node * tmp = head;
+  if(tmp == NULL) {
+    printf("Lista vazia\n");
+    return 0;
+  }
+
+  while(tmp != NULL){
+    tmp = tmp->next;
+    count++;
+  }  
+  return count; 
+
+}
+
 void list(node * head){
   node * tmp = head;
   while(tmp != NULL){
@@ -63,7 +79,6 @@ void put(node** head, int data) {
 int get(node * head, int position){
   int count = 0;
   node * tmp = head;
-  // tratativas de tamanho da fila e posição além do limite dela poderiam ser feitas
   
   while(tmp != NULL && count != position){
     tmp = tmp->next;
@@ -79,7 +94,7 @@ void delete(node ** head, int position){
   node * tmp = *head;
   node * tmp_ant;
 
-  //tratativa para lista vazia e lista com um elemento a serem implementadas
+  //tratativa para lista com um elemento a ser implementada
   if(tmp == NULL){
     printf("Empty List");
     return;
@@ -141,8 +156,14 @@ int main(int argc, char *argv[]) {
       token = strtok(NULL, delim);
       int position; 
       position = atoi(token);
+      //tratativa de posições inválidas
+      if(position >= size(head)){
+        printf("Invalid Position\n");
+      } else{
+          printf("%d\n", get(head,position));
+      }
       
-      printf("%d\n", get(head,position));
+      
     }
 
     if (strncmp(input, "delete", 6) == 0){
