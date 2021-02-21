@@ -108,6 +108,13 @@ void delete(node ** head, int position){
   node * tmp_ant;
 
   //tratativa para lista com um elemento a ser implementada
+  if(size(*head) == 1){
+    free(tmp);
+    *head = NULL;
+    return;
+  }
+  
+  //tratativa lista vazia
   if(tmp == NULL){
     printf("Empty List");
     return;
