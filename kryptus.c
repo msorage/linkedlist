@@ -2,9 +2,6 @@
 //OBS2: Todas as contagens da lista começam em 0
 //OBS3: o nome da função remove foi alterado para delete, uma vez que estava dando conflito com uma função da stdlib;
 
-
-//faltando: clear
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
