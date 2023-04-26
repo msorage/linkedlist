@@ -1,7 +1,3 @@
-//OBS: Só foi me dado 1h para fazer esse programa, enquanto que no enunciado constava que haveria 1h30
-//OBS2: Todas as contagens da lista começam em 0
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
